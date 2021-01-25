@@ -1,29 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pioneer Bank</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <main class="container">
-        <section class="mt-5 p-5" id="login-area">
+    <main class="container mt-5">
+        <section class="p-5" id="login-area">
             <h2 class="text-center">Welcome To Poineer Bank</h2>
-            <section class="p-5 mt-5 shadow border-5 rounded" id="submit-area">
+            <section class="p-5 mt-5 shadow-sm border-5 rounded" id="submit-area">
                 <h4>Login</h4>
                 <input type="email" placeholder="Enter your email" class="form-control mt-3">
                 <input type="password" placeholder="Enter your password" class="form-control my-3">
                 <button id="login" class="btn btn-success">Enter</button>
             </section>
         </section>
+        <section id="transaction-area">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="deposit m-3 p-4 text-white rounded">
+                        <h5>Deposit</h5>
+                        <h1>$00</h1>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="withdraw m-3 p-4 text-white rounded">
+                        <h5>Withdraw</h5>
+                        <h1>$00</h1>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="balance m-3 p-4 text-white rounded">
+                        <h5>Balance</h5>
+                        <h1>$1240</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <div class="p-4 shadow-sm m-3 rounded">
+                        <div class="h4">Deposit</div>
+                        <input id="deposit-amount" type="text" class="form-control my-3" placeholder="$ amount you want to deposit">
+                        <button id="deposit-btn" class="btn btn-success">Deposit</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-4 shadow-sm m-3 rounded">
+                        <div class="h4">Withdraw</div>
+                        <input type='text' placeholder="$ amount you want to withdraw" class="form-control my-3">
+                        <button class="btn btn-success">Withdraw</button>
+                    </div>
+                </div>
+            </div>        
+        </section>
     </main>
     <script>
+
+        //log/tracsaction hide show funcnality
         const loginBtn = document.getElementById("login");
         loginBtn.addEventListener("click", () => {
-            console.log("Hello I am Rakib")
+            const loginArea = document.getElementById("login-area");
+            loginArea.style.display = "none";
+            const transactionArea = document.getElementById("transaction-area");
+            transactionArea.style.display = "block";
+        })
+
+        //deposit functionality
+
+        const depositBtn = document.getElementById("deposit-btn");
+        depositBtn.addEventListener("click", () => {
+            const depositAmount = document.getElementById("deposit-amount").value;
+            const depositAmountInNumber = parseFloat(depositAmount)
+            console.log(depositAmountInNumber);
         })
     </script>
 </body>
+
 </html>
