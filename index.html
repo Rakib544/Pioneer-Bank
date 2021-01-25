@@ -15,9 +15,15 @@
                 <h4>Login</h4>
                 <input type="email" placeholder="Enter your email" class="form-control mt-3">
                 <input type="password" placeholder="Enter your password" class="form-control my-3">
-                <button class="btn btn-success">Enter</button>
+                <button id="login" class="btn btn-success">Enter</button>
             </section>
         </section>
     </main>
+    <script>
+        const loginBtn = document.getElementById("login");
+        loginBtn.addEventListener("click", () => {
+            console.log("Hello I am Rakib")
+        })
+    </script>
 </body>
 </html>
