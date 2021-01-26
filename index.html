@@ -12,12 +12,14 @@
 
 <body>
     <main class="container mt-5">
-        <section class="p-5" id="login-area">
-            <h2 class="text-center">Welcome To Poineer Bank</h2>
+        <section class="col-lg-8 col-md-10 col-sm-12 mx-auto" id="login-area">
+            <h2 class="text-center">Welcome To R@kib's Bank</h2>
             <section class="p-5 mt-5 shadow-sm border-5 rounded" id="submit-area">
                 <h4>Login</h4>
-                <input type="email" placeholder="Enter your email" class="form-control mt-3">
+                <input type="email" placeholder="Enter your email" class="form-control mt-3" required>
+                <p id="email-warning"></p>
                 <input type="password" placeholder="Enter your password" class="form-control my-3">
+                <p id="warning"></p>
                 <button id="login" class="btn btn-success">Enter</button>
             </section>
         </section>
@@ -46,14 +48,14 @@
                 <div class="col-md-6">
                     <div class="p-4 shadow-sm m-3 rounded">
                         <div class="h4">Deposit</div>
-                        <input id="deposit-amount" type="text" class="form-control my-3" placeholder="$ amount you want to deposit">
+                        <input id="deposit-amount" type="text" value = 0 class="form-control my-3" placeholder="$ amount you want to deposit">
                         <button id="deposit-btn" class="btn btn-success">Deposit</button>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="p-4 shadow-sm m-3 rounded">
                         <div class="h4">Withdraw</div>
-                        <input id="withdraw-amount" type='text' placeholder="$ amount you want to withdraw" class="form-control my-3">
+                        <input id="withdraw-amount" type='text' value = 0 placeholder="$ amount you want to withdraw" class="form-control my-3">
                         <button id="withdrawBtn" class="btn btn-success">Withdraw</button>
                     </div>
                 </div>
@@ -62,13 +64,25 @@
     </main>
     <script>
 
-        //log/tracsaction hide show funcnality
+        //login/transaction hide show functionality
         const loginBtn = document.getElementById("login");
         loginBtn.addEventListener("click", () => {
-            const loginArea = document.getElementById("login-area");
-            loginArea.style.display = "none";
-            const transactionArea = document.getElementById("transaction-area");
-            transactionArea.style.display = "block";
+           const inputArea = document.querySelectorAll("input[type='email'], input[type='password']");
+           if(inputArea[0].value === '') {
+            const emailWarning = document.getElementById('email-warning');
+            emailWarning.innerText = "Please Provide Your Email";
+            emailWarning.style.color = "red";
+           }else if(inputArea[1].value.length < 8) {
+               const warning = document.getElementById('warning');
+               warning.innerText = "Password Must be minimum 8 character";
+               warning.style.color = 'red';
+           }
+            else {
+                const loginArea = document.getElementById("login-area");
+                loginArea.style.display = "none";
+                const transactionArea = document.getElementById("transaction-area");
+                transactionArea.style.display = "block";
+           }
         })
 
         //deposit functionality
@@ -80,7 +94,7 @@
             updateAmount("deposit-total-amount", depositAmountInNumber);
             updateAmount("currentBalance", depositAmountInNumber)
             
-            document.getElementById("deposit-amount").value = "";
+            document.getElementById("deposit-amount").value = 00;
         })
 
         //withdraw functionality
@@ -92,7 +106,7 @@
             updateAmount("withdraw-total-amount", withdrawAmountNumber);
             updateAmount("currentBalance", -1 * withdrawAmountNumber)
             
-            document.getElementById("withdraw-amount").value = "";
+            document.getElementById("withdraw-amount").value = 00;
         })
 
         //function for update amount
